@@ -1,0 +1,24 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+  int start, end, columns;
+ //start is for the first value, end for last and columns for number of columns
+  cout<<"Starting value, ending value and columns: ";
+  cin>> start >> end >> columns;
+//we have to make a countdown as a constant value 
+  const int count = end - start + 1;
+  const int rows = ( ( count / columns ) + count ) / columns;
+//for entering number to next line until to be moved to next column
+  cout<<"\n";
+
+  for ( int i = 0, first = start; i < rows; i++, first++ ) {
+    for ( int j = first; j <= end; j += rows )
+      cout<< j <<' ';
+
+    cout <<"\n";
+  }
+  return 0;
+}
