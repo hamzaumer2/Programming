@@ -1,0 +1,119 @@
+/*
+d=days
+dr = daily rate
+md = medication charges
+serv = service charges
+
+*/
+
+#include <iostream>
+
+using namespace std;
+
+void getData();
+void printTotal(int d, double dr, double md, double serv);
+void printTotal(double md, double serv);
+
+void getData()
+{
+    char choice;
+    int d;
+    double dr, md, serv;
+    cout << "Was patient admitted as an in-patient or out-patient?"<<endl;
+    cout<< "Enter (I) for in-patient\nEnter (O) for out-patient\n";
+    cin >> choice;
+    if(choice == 'I' || choice == 'i')
+        {
+        cout << "How many days were spent in the hospital? ";
+        cin >> d;
+        while (d<=0)
+        {
+        cout<<"***INVAILD ENTRY!!! DAYS CAN NOT BE NEGATIVE OR ZERO!!!***"<<endl;
+        cout << "How many days were spent in the hospital? ";
+        cin >> d;
+        }
+        cout << "What was the daily rate? ";
+        cin >> dr;
+        while (dr<0)
+        {
+        cout<<"***INVAILD ENTRY!!! DAILY RATE CAN NOT BE NEGATIVE!!!***"<<endl;
+        cout << "What was the daily rate? ";
+        cin >> dr;
+        }
+
+        cout << "Enter the charges for hospital services (lab tests, etc.): ";
+        cin >> serv;
+        while (serv<0)
+        {
+        cout<<"***INVAILD ENTRY!!! SERVICE CHARGES CAN NOT BE NEGATIVE!!!***"<<endl;
+        cout << "Enter the charges for hospital services (lab tests, etc.): ";
+        cin >> serv;
+        }
+        cout << "Enter the hospital medication medication charges: ";
+        cin >> md;
+        while (md<0)
+        {
+        cout<<"***INVAILD ENTRY!!! MEDICATION CHARGES CAN NOT BE NEGATIVE!!!***"<<endl;
+        cout << "Enter the hospital medication medication charges: ";
+        cin >> md;
+        }
+        cout<< "           Patient hospital stay report           "<<endl;
+        cout<<"---------------------------------------------------"<<endl;
+        cout<<"Number of days spent in the hospital:\t"<<d<<endl;
+        cout<<"Daily Rate                          :\t$\t"<<dr<<endl;
+        cout<<"Charges for hospital services       :\t$\t"<<serv<<endl;
+        cout<<"Hospital medication charges         :\t$\t"<<md<<endl;
+        printTotal(d, dr, md, serv);
+    }
+    else if (choice == 'O' || choice =='o')
+        {
+
+        cout << "What are the medication charges? ";
+        cin >> md;
+        while (md<0)
+        {
+        cout<<"***INVAILD ENTRY!!! MEDICATION CHARGES CAN NOT BE NEGATIVE!!!***"<<endl;
+        cout << "What are the medication charges? ";
+        cin >> md;
+        }
+        cout << "What are the services charges? ";
+        cin >> serv;
+              while (serv<0)
+        {
+        cout<<"***INVAILD ENTRY!!! SERVICE CHARGES CAN NOT BE NEGATIVE!!!***"<<endl;
+        cout << "What are the services charges? ";
+        cin >> serv;
+        }
+        cout<< "           Patient hospital stay report           "<<endl;
+        cout<<"---------------------------------------------------"<<endl;
+        cout<<"Charges for hospital services       :\t$\t"<<serv<<endl;
+        cout<<"Hospital medication charges         :\t$\t"<<md<<endl;
+        printTotal(md, serv);
+    }
+    else
+    {
+        cout<<"Invalid ENTRY"<<endl;
+        getData();
+    }
+
+}
+
+void printTotal(int d, double dr, double md, double serv)
+{
+
+    cout << "Total charges                       :\t$\t" << (d*dr) + md + serv <<endl;
+
+}
+
+void printTotal(double md, double serv)
+{
+    cout << "Total charges                       :\t$\t" << md + serv <<endl;
+}
+
+int main()
+{
+    cout<< "This program computes and displays a patients hospital charges"<<endl;
+    cout<< "--------------------------------------------------------------"<<endl;
+    getData();
+    return 0;
+}
